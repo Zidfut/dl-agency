@@ -1,0 +1,148 @@
+@use 'sass:map';
+@use 'sass:math';
+
+// USER VARIABLES SECTION
+
+$accent: #a54fc9; // Accent Color
+$gutter: 30px; // Global Gutter
+$radius: 15px; // Default Radius
+$fontsize: 16px; // Body Font Size
+$lineheight: 1.2; // Document Line Height
+$textcolor: #151515; // Text Color
+$userfont: roboto, sans-serif; // User Font Family
+$systemfont: -apple-system, BlinkMacSystemFont, Arial, sans-serif; // System Font Family
+
+// FONTS LOAD SECTION
+
+@mixin font($fname, $fstyle, $fweight, $furl) {
+  @font-face {
+    font-family: $fname;
+    font-style: $fstyle;
+    font-weight: $fweight;
+    src: url($furl) format('woff2');
+  }
+}
+
+@include font('roboto', normal, 400, '../assets/fonts/roboto-regular.woff2');
+@include font('risque', normal, 400, '../assets/fonts/risque-regular.woff2');
+
+// MIXINS SECTION
+
+// Breakpoints Mixin
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map.get($breakpoints, $name); @return if($min != 0, $min, null);
+}
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $max: map.get($breakpoints, $name); @return if($max and $max > 0, $max - .02, null);
+}
+
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min { @media (min-width: $min) { @content; } } @else { @content; }
+}
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max { @media (max-width: $max) { @content; } } @else { @content; }
+}
+
+// Custom Mixin
+
+
+@function fluid($max: 100, $min: 10) {
+  $maxViewportWidth: 1440;
+  $minViewportWidth: 425;
+
+  $maxSize: math.div($max, 16);
+  $minSize: math.div($min, 16);
+  $maxWidth: math.div($maxViewportWidth, 16);
+  $minWidth: math.div($minViewportWidth, 16);
+
+  $slope: math.div(($maxSize - $minSize), ($maxWidth - $minWidth));
+  $yAxisIntersection: -$minWidth * $slope + $minSize;
+
+  @return clamp(
+    #{$minSize * 1rem},
+    #{$yAxisIntersection * 1rem} + #{$slope * 100vw},
+    #{$maxSize * 1rem}
+  );
+}
+
+@mixin fluid-text($max: 48, $min: 16) {
+  font-size: fluid($max, $min);
+}
+
+
+// RESET STYLES SECTION
+
+:root {
+  --dark: #141429;
+  --cola-red: #D02B2B;
+  --container-width: 1340px;
+  --container-padding-x: 16px;
+}
+
+body {
+  font-family: $userfont;
+  font-size: $fontsize;
+  line-height: $lineheight;
+  color: #fff;
+  min-width: 320px;
+  position: relative;
+  overflow-x: hidden;
+  background-color: var(--dark);
+}
+
+ul[class] {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a[class] {
+  text-decoration: none;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::placeholder {
+  color: #666;
+}
+
+::selection {
+  background-color: var(--cola-red);
+  color: #fff;
+}
+
+button, input, select, textarea {
+  line-height: inherit;
+  outline: none;
+}
+
+input, textarea {
+  &:focus:required:invalid {
+    border-color: red;
+  }
+  &:required:valid {
+    border-color: green;
+  }
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  cursor: pointer;
+}

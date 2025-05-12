@@ -1,0 +1,106 @@
+@use "../config" as *;
+
+.hero {
+
+    @include media-breakpoint-down(md) {
+      padding-top: 220px;
+    }
+
+    &__container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        @include media-breakpoint-down(md) {
+          flex-direction: column;
+          align-items: flex-start;
+          row-gap: 77px;
+        }
+    }
+
+    &__left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex-shrink: 0;
+
+        @include media-breakpoint-down(md) {
+          width: 100%;
+        }
+
+        .h1 {
+            margin-bottom: fluid(20, 13);
+        }
+    
+        .subtitle {
+            margin-bottom: fluid(27,43);
+        }
+
+        .btn {
+            @include media-breakpoint-down(md) {
+              align-self: center;
+            }
+        }
+    }
+
+    &__right {
+        align-self: flex-end;
+
+        @include media-breakpoint-down(md) {
+          align-self: center;
+        }
+    }
+
+    &__img {
+        width: fluid(1120, 840);
+        // position: relative;
+        // left: -5%;
+        position: absolute;
+        bottom: 0;
+        left: fluid(410, 50);
+        pointer-events: none;
+
+        @include media-breakpoint-down(md) {
+            inset: 0;
+            position: static;
+            width: 100%;
+            min-width: 420px;
+        }
+    }
+
+    &__cloud {
+        position: absolute;
+        bottom: fluid(246, 160);
+        left: fluid(520, 200);
+        padding: 54px 50px 54px 35px;
+        z-index: 1;
+        pointer-events: none;
+
+        @include media-breakpoint-down(md) {
+          display: none;
+        }
+
+        &::before {
+            content: "";
+            display: block;
+            width: 120%;
+            height: 120%;
+            background-image: url('../assets/img/cloud.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        p {
+            font-family: 'risque', sans-serif;
+            font-size: 18px;
+            color: #000;
+        }
+    }
+
+}

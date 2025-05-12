@@ -1,0 +1,236 @@
+@use "sass:math";
+
+@use "../config" as *;
+
+@keyframes burger-top-bar {
+  0% {
+    transform: translateY(0);
+  }
+  70% {
+    transform: translateY(8px);
+  }
+  100% {
+    transform: translateY(8px) rotate(45deg);
+  }
+}
+
+@keyframes burger-top-bar-reverse {
+  0% {
+    transform: translateY(8px) rotate(45deg);
+  }
+  70% {
+    transform: translateY(8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes burger-bottom-bar {
+  0% {
+    transform: translateY(0);
+  }
+  70% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+@keyframes burger-bottom-bar-reverse {
+  0% {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  70% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.header {
+  position: fixed;
+  z-index: 10;
+  top: fluid(40, 30);
+  left: 0;
+  width: 100%;
+
+  &__menu {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: fluid(170, 30);
+  }
+
+  &__nav {
+    margin-left: auto;
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+
+    &-list {
+      display: flex;
+      align-items: center;
+      column-gap: fluid(60, 30);
+    }
+
+    &-item {
+      line-height: 0;
+    }
+
+    &-link {
+      display: inline-block;
+      font-size: 16px;
+      line-height: 1;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+
+      &::after {
+        content: attr(data-text);
+        color: var(--cola-red);
+        font-size: inherit;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        transition: 0.3s;
+      }
+
+      @media(hover:hover) {
+        &:hover {
+          span,
+          &::after {
+            transform: translateY(-100%);
+            transition: 0.3s;
+          }
+        }
+      }
+
+      span {
+        display: inline-block;
+        transition: 0.3s;
+      }
+    }
+  }
+
+  &__dropdown {
+    position: relative;
+    z-index: 1;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--cola-red);
+      border-radius: 100% 0 100% 100%;
+      box-shadow: 4px 8px 0 0 rgba($color: #000000, $alpha: 0.1);
+      z-index: -1;
+      transition: 0.3s;
+      transition-delay: 0.3s;
+    }
+
+    &.active {
+      &::before {
+        transform: translate(-50%, -50%) scale(30);
+        transition-delay: 0.2s;
+        box-shadow: none;
+        border-radius: 100%;
+      }
+      .header__dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0.5s;
+      }
+    }
+
+    .menu__btn {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 5px;
+      position: relative;
+      z-index: 3;
+
+      &-line {
+        display: block;
+        height: 3px;
+        width: 34px;
+        background-color: #fff;
+        animation-duration: 0.3s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+      }
+
+      &.active {
+        .menu__btn-line:first-child {
+          animation-name: burger-top-bar;
+        }
+        .menu__btn-line:nth-child(2) {
+          transition-delay: 0.1s;
+          opacity: 0;
+        }
+        .menu__btn-line:last-child {
+          animation-name: burger-bottom-bar;
+        }
+      }
+
+      &.closed {
+        .menu__btn-line:first-child {
+          animation-name: burger-top-bar-reverse;
+        }
+        .menu__btn-line:nth-child(2) {
+          transition-delay: 0.1s;
+          opacity: 1;
+        }
+        .menu__btn-line:last-child {
+          animation-name: burger-bottom-bar-reverse;
+        }
+      }
+    }
+
+    &-menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 50%;
+      z-index: 2;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+
+      @include media-breakpoint-down(md) {
+        width: 100%;
+      }
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      row-gap: 35px;
+    }
+
+    &__link {
+      font-family: "risque", sans-serif;
+      font-size: 32px;
+      color: #fff;
+    }
+  }
+}
