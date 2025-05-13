@@ -166,6 +166,10 @@
       visibility: hidden;
       transition: all 0.3s;
 
+      @include media-breakpoint-down(lg) {
+        width: 70%;
+      }
+
       @include media-breakpoint-down(md) {
         width: 100%;
       }

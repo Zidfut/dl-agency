@@ -6,11 +6,21 @@
     background-position: center;
     background-size: cover;
 
+    @include media-breakpoint-down(lg) {
+        padding-top: 130px;
+        padding-bottom: 100px;
+    }
+
     &__container {
         display: flex;
         align-items: center;
         column-gap: 20px;
         height: 100%;
+
+        @include media-breakpoint-down(lg) {
+            flex-direction: column;
+            row-gap: 70px;
+        }
     }
 
     &__left {
@@ -27,21 +37,27 @@
     &__options {
         display: flex;
         justify-content: flex-start;
-        column-gap: fluid(35, 10);
+        column-gap: fluid(35, 20);
     }
 
     &__option {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: fluid(150, 90);
-        height: fluid(150, 90);
+        width: fluid(150, 110);
+        height: fluid(150, 110);
         border-radius: 100%;
         background-color: #fff;
         border: 5px solid #fff;
-        padding: 10px;
+        padding: 20px;
         cursor: pointer;   
         transition: border-color .3s, background-color .3s; 
+
+        @include media-breakpoint-down(sm) {
+            width: calc(33% - 10px);
+            height: auto;
+            aspect-ratio: 1 / 1;
+        }
 
         &--active {
             background-color: transparent;
@@ -66,10 +82,10 @@
     &__right {
         width: 100%;
         max-width: 550px;
-    }
 
-    &__descriptions {
-        
+        @include media-breakpoint-down(sm) {
+            max-width: 100%;
+        }
     }
 
     .description__item {
@@ -83,13 +99,21 @@
         min-width: 480px;
         border: 3px solid #fff;
         border-radius: 20px;
-        padding: fluid(30, 10);
+        padding: 35px;
 
         @include media-breakpoint-down(lg) {
-            flex-direction: column-reverse;
-            row-gap: 10px;
-            min-width: initial;
+            height: auto;
+            min-height: 340px;
         }
+
+        @include media-breakpoint-down(sm) {
+            border: none;
+            border-radius: 0;
+            flex-direction: column-reverse;
+            min-height: auto;
+            min-width: auto;
+            padding: 0 40px;
+        } 
         
         &.active {
             opacity: 1;
@@ -99,22 +123,28 @@
 
         &-content {
             width: 65%;
+            flex-shrink: 0;
 
-            @include media-breakpoint-down(lg) {
+            @include media-breakpoint-down(sm) {
                 width: 100%;
             }
+
         }
 
         &-title {
-            margin-bottom: fluid(30, 10);
+            margin-bottom: 30px;
+
+            @include media-breakpoint-down(sm) {
+                text-align: center;
+            }
         }
 
         &-text {
-            @include fluid-text(28, 22);
+            font-size: 28px;
+        }
 
-            @include media-breakpoint-down(lg) {
-                font-size: 22px;
-            }
+        &-img {
+            max-width: 136px;
         }
     }
 }

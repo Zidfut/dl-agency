@@ -101,7 +101,7 @@
   scrollbar-width: none;
   scroll-behavior: smooth;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     height: auto;
     overflow: auto;
   }
@@ -114,12 +114,18 @@
   scroll-snap-align: start;
   overflow: hidden;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     height: auto;
     min-height: initial;
     max-height: initial;
-    scroll-snap-type: initial;
   }
+
+  // @include media-breakpoint-down(md) {
+  //   height: auto;
+  //   min-height: 755px;
+  //   max-height: initial;
+  //   scroll-snap-type: initial;
+  // }
 }
 
 .h1, .h2, .h3, .subtitle {
@@ -131,11 +137,11 @@
 }
 
 .h2 {
-  @include fluid-text(56, 46);
+  @include fluid-text(56, 52);
 }
 
 .h3 {
-    @include fluid-text(42, 32);
+  font-size: 42px;
 }
 
 .subtitle {
