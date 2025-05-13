@@ -91,6 +91,10 @@ $grid-breakpoints: (
   --container-padding-x: 16px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: $userfont;
   font-size: $fontsize;

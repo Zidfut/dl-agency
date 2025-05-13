@@ -1,0 +1,120 @@
+@use "../config" as *;
+
+.presents {
+    background-image: url('../assets/img/section-2-bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    &__container {
+        display: flex;
+        align-items: center;
+        column-gap: 20px;
+        height: 100%;
+    }
+
+    &__left {
+        .h2 {
+            margin-bottom: fluid(30, 25);
+            text-wrap-style: balance;
+        }
+
+        .subtitle {
+            margin-bottom: fluid(30, 35);
+        }
+    }
+
+    &__options {
+        display: flex;
+        justify-content: flex-start;
+        column-gap: fluid(35, 10);
+    }
+
+    &__option {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fluid(150, 90);
+        height: fluid(150, 90);
+        border-radius: 100%;
+        background-color: #fff;
+        border: 5px solid #fff;
+        padding: 10px;
+        cursor: pointer;   
+        transition: border-color .3s, background-color .3s; 
+
+        &--active {
+            background-color: transparent;
+        }
+
+        &-img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+
+        @media(hover: hover) {
+            &:not(.presents__option--active) {
+                &:hover {
+                    border-color: var(--cola-red);
+                }
+            }
+        }
+    }
+
+    &__right {
+        width: 100%;
+        max-width: 550px;
+    }
+
+    &__descriptions {
+        
+    }
+
+    .description__item {
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: fluid(30, 0);
+        min-height: 405px;
+        min-width: 480px;
+        border: 3px solid #fff;
+        border-radius: 20px;
+        padding: fluid(30, 10);
+
+        @include media-breakpoint-down(lg) {
+            flex-direction: column-reverse;
+            row-gap: 10px;
+            min-width: initial;
+        }
+        
+        &.active {
+            opacity: 1;
+            visibility: visible;
+            display: flex;
+        }
+
+        &-content {
+            width: 65%;
+
+            @include media-breakpoint-down(lg) {
+                width: 100%;
+            }
+        }
+
+        &-title {
+            margin-bottom: fluid(30, 10);
+        }
+
+        &-text {
+            @include fluid-text(28, 22);
+
+            @include media-breakpoint-down(lg) {
+                font-size: 22px;
+            }
+        }
+    }
+}

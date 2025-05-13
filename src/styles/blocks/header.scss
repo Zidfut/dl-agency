@@ -2,54 +2,6 @@
 
 @use "../config" as *;
 
-@keyframes burger-top-bar {
-  0% {
-    transform: translateY(0);
-  }
-  70% {
-    transform: translateY(8px);
-  }
-  100% {
-    transform: translateY(8px) rotate(45deg);
-  }
-}
-
-@keyframes burger-top-bar-reverse {
-  0% {
-    transform: translateY(8px) rotate(45deg);
-  }
-  70% {
-    transform: translateY(8px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes burger-bottom-bar {
-  0% {
-    transform: translateY(0);
-  }
-  70% {
-    transform: translateY(-8px);
-  }
-  100% {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-}
-
-@keyframes burger-bottom-bar-reverse {
-  0% {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-  70% {
-    transform: translateY(-8px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
 .header {
   position: fixed;
   z-index: 10;
