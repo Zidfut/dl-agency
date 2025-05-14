@@ -66,7 +66,7 @@ const choices = new Choices(element, {
 particlesJS("snow", {
   particles: {
     number: {
-      value: 80,
+      value: 50,
       density: {
         enable: true,
         value_area: 800,
@@ -77,18 +77,9 @@ particlesJS("snow", {
     },
     shape: {
       type: "circle",
-      stroke: {
-        width: 0,
-        color: "#000000",
-      },
       polygon: {
         nb_sides: 5,
-      },
-      image: {
-        src: "img/github.svg",
-        width: 100,
-        height: 100,
-      },
+      }
     },
     opacity: {
       value: 0.9,
@@ -119,7 +110,7 @@ particlesJS("snow", {
     },
     move: {
       enable: true,
-      speed: 3,
+      speed: 2.5,
       direction: "bottom",
       random: false,
       straight: false,
@@ -137,11 +128,9 @@ particlesJS("snow", {
     events: {
       onhover: {
         enable: false,
-        mode: "bubble",
       },
       onclick: {
         enable: false,
-        mode: "repulse",
       },
       resize: true,
     },
