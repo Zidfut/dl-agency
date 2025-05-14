@@ -177,6 +177,10 @@
   @include media-breakpoint-down(lg) {
     display: none;
   }
+
+  @media (max-height: 744px), (min-height: 1201px) {
+    display: none;
+  }
   
   &__container {
     position: relative;

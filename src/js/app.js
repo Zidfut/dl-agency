@@ -24,47 +24,52 @@ document.querySelectorAll("[data-dropdown-link]").forEach((link) => {
   link.addEventListener("click", () => toggleMenu(false));
 });
 
-
-gsap.utils.toArray(".animation--fade-in").forEach((item) => {
-  gsap.from(item, {
-    opacity: 0,
-    delay: 3,
-    duration: 0.3,
-    y: -20,
-    x: 20,
-    ease: "power1.out",
-    scrollTrigger: {
-      trigger: item,
-      start: "top 95%",
-    },
-  });
-});
-
 ScrollTrigger.defaults({
   scroller: ".main"
 });
 
-gsap.to(".decor__wrap", {
-  top: "0",
-  y: '-10%',
-  duration: 0.5,
-  ease: "back.out(1.4)",
-  scrollTrigger: {
-    trigger: ".presents",
-    start: "top 1%",
-    scrub: false,
-    toggleActions: 'play none none reverse'
+ScrollTrigger.matchMedia({
+  "(min-width: 768px)": function () {
+    gsap.utils.toArray(".animation--fade-in").forEach((item) => {
+      gsap.from(item, {
+        opacity: 0,
+        delay: 3,
+        duration: 0.3,
+        y: -20,
+        x: 20,
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: item,
+          start: "top 95%",
+        },
+      });
+    });
   },
-});
 
-gsap.to(".decor__wrap", {
-  opacity: 0,
-  scrollTrigger: {
-    trigger: ".contacts",
-    start: "top 1%", 
-    scrub: false,
-    toggleActions: 'play none none reverse',
-  },
+  "(min-width: 992px) and (min-height: 746px) and (max-height: 1199px)": function () {
+    gsap.to(".decor__wrap", {
+      top: "0",
+      y: "-10%",
+      duration: 0.5,
+      ease: "back.out(1.4)",
+      scrollTrigger: {
+        trigger: ".presents",
+        start: "top 1%",
+        scrub: false,
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    gsap.to(".decor__wrap", {
+      opacity: 0,
+      scrollTrigger: {
+        trigger: ".contacts",
+        start: "top 1%",
+        scrub: false,
+        toggleActions: "play none none reverse",
+      },
+    });
+  }
 });
 
 const optionButtons = document.querySelectorAll(".presents__option");
