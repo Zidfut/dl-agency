@@ -79,9 +79,9 @@
       width: 100%;
       height: 100%;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 0;
+      left: 0;
+      transform-origin: center;
       background-color: var(--cola-red);
       border-radius: 100% 0 100% 100%;
       box-shadow: 4px 8px 0 0 rgba($color: #000000, $alpha: 0.1);
@@ -92,7 +92,7 @@
 
     &.active {
       &::before {
-        transform: translate(-50%, -50%) scale(30);
+        transform: scale(32);
         transition-delay: 0.2s;
         box-shadow: none;
         border-radius: 100%;
