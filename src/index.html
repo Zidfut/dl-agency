@@ -5,6 +5,7 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/img/favicon.png">
   <title>DL Agency</title>
 
   <link rel="stylesheet" href="styles/main.scss">
@@ -217,7 +218,30 @@
     </section>
 
     <section class="section contacts" id="contacts">
-      <div class="container"></div>
+      <div class="container contacts__container">
+        <div class="contacts__content">
+          <h2 class="h2 contacts__content-title">Write us <br> for real presents</h2>
+          <form class="contacts__form">
+            <div class="contacts__form-row">
+              <input type="text" class="contacts__form-input" placeholder="Name">
+              <input type="tel" class="contacts__form-input" placeholder="Phone">
+            </div>
+            <div class="contacts__form-row">
+              <select class="contacts__form-select" data-choices>
+                <option value="Boy">Boy</option>
+                <option value="Girl">Girl</option>
+              </select>
+              <input type="email" class="contacts__form-input" placeholder="Email">
+            </div>
+            <textarea class="contacts__form-textarea" placeholder="Your wish"></textarea>
+            <label class="contacts__form-checkbox">
+              <input type="checkbox">
+              <span class="checkmark"></span>
+              <span class="contacts__form-label">Whant Coca-cola with present?</span>
+            </label>
+          </form>
+        </div>
+      </div>
     </section>
 
   </main>

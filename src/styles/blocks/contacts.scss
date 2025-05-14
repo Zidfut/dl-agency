@@ -5,4 +5,264 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+
+    @include media-breakpoint-down(lg) {
+        padding-top: 130px;
+        padding-bottom: 75px;
+    }
+
+    &__container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    &__content {
+        max-width: 468px;
+
+        @include media-breakpoint-down(sm) {
+            max-width: 100%;
+            width: 100%;
+        }
+
+        &-title {
+            margin-bottom: 30px;
+        }
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+
+        &-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            column-gap: 20px;
+
+            @include media-breakpoint-down(sm) {
+                display: contents;
+            }
+
+            input,
+            select {
+                max-width: 220px;
+
+                @include media-breakpoint-down(sm) {
+                    max-width: 100%;
+                    width: 100%;
+                }
+            }
+        }
+
+        input[class],
+        textarea[class] {
+            outline: none;
+            border: 3px solid #fff;
+            border-radius: 15px;
+            background: transparent;
+            font-size: 16px;
+            color: #fff;
+            padding-inline: 20px;
+
+            &::placeholder {
+                font-size: 16px;
+                color: inherit;
+            }
+        }
+
+        &-input {
+            width: 100%;
+            height: 48px;
+
+            @include media-breakpoint-down(sm) {
+              height: 51px;
+            }
+
+        }
+
+        &-textarea {
+            width: 100%;
+            height: 76px;
+            padding-block: 10px;
+            resize: none;
+
+            @include media-breakpoint-down(sm) {
+                height: 95px;
+            }
+        }
+
+        &-label {
+            display: inline-block;
+            font-size: 16px;
+            color: var(--cola-red);
+        }
+
+        &-checkbox {         
+            display: flex;
+            column-gap: 7px;
+            width: max-content;
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+ 
+            input {
+                display: none;
+                visibility: hidden;
+            }
+
+            .checkmark {
+                position: relative;
+                height: 20px;
+                width: 20px;
+                background-color: transparent;
+                border: 2px solid var(--cola-red);
+                border-radius: 3px;
+            }
+
+            @media(hover:hover) {
+                &:hover input ~ .checkmark {
+                    background-color: #fff;
+                }
+            }
+
+            input:checked ~ .checkmark {
+                background-color: #fff;
+            }
+
+            input:checked ~ .checkmark:after {
+                display: block;
+            }
+
+            .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+                left: 5px;
+                top: 2px;
+                width: 6px;
+                height: 10px;
+                border: solid var(--cola-red);
+                border-width: 0 3px 3px 0;
+                transform: rotate(45deg);
+            }
+        }
+    }
+    
+    .choices {
+        width: calc(50% - 10px);
+        max-width: 220px;
+        margin-bottom: 0;
+        border: 3px solid #fff;
+        border-radius: 15px;
+        font-size: 16px;
+        color: #fff;
+        flex-shrink: 0;
+
+        @include media-breakpoint-down(sm) {
+            width: 100%;
+            max-width: 100%;
+            height: 51px;
+        }
+
+        &.is-flipped {
+            .choices__list--dropdown {
+                margin-bottom: 0 !important;
+                border-radius:15px 15px 0 0 !important;
+
+                &::before,
+                &::after {
+                    top: 100%;
+                }
+
+                &::before {
+                    border-width: 11px 8px 0 0;
+                    border-color: #fff transparent transparent transparent;
+                }
+
+                &::after {
+                    border-width: 0 8px 11px 0;
+                    border-color: transparent #fff transparent transparent;
+                }
+            }
+        }
+
+        &[data-type*=select-one]::after {
+            border-color: #fff transparent transparent transparent;
+        }
+
+        &[data-type*=select-one].is-open::after {
+            border-color: transparent transparent #fff;
+        }
+
+        &__inner {
+            background-color: transparent;
+            border-radius: 15px;
+            font-size: 16px;
+            border: none;
+            padding-left: 13px;
+        }
+
+        &__list {
+            &--dropdown {
+                border: none !important;
+                border-radius: 0 0 15px 15px !important;
+                left: -3px;
+                right: -3px;
+                width: calc(100% + 6px) !important;
+                padding-block: 15px;
+                overflow: initial !important;
+                margin-top: 0 !important;
+
+                &::before,
+                &::after {
+                    content: "";
+                    width: 0;
+                    height: 0;
+                    display: block;
+                    border-style: solid;
+                    position: absolute;
+                    bottom: 100%;
+                    transform: rotate(0deg);
+                }
+
+                &::before {
+                    left: 0;
+                    border-width: 11px 0 0 8px;
+                    border-color: transparent transparent transparent #fff;
+                }
+
+                &::after {
+                    right: 0;
+                    border-width: 0 0 11px 8px;
+                    border-color: transparent transparent #fff transparent;
+                }
+            }
+        }
+        
+        &__item {
+            &--choice {
+                color: #CECECE;
+                &:hover {
+                    background-color: #fff !important;
+                    color: var(--cola-red);
+                }
+            }
+        }
+
+        .choices__item.choices__placeholder.choices__item--selectable {
+            opacity: 1;
+        }
+
+        .choices__list--dropdown .choices__item--selectable.is-highlighted, .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
+            background-color: #fff;
+        }
+
+        .choices__list--dropdown .choices__item, .choices__list[aria-expanded] .choices__item {
+            font-size: 16px;
+            padding: 5px 20px;
+        }
+    }
+
 }

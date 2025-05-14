@@ -1,3 +1,5 @@
+import Choices from 'choices.js';
+
 const menuBtn = document.querySelector("[data-menu-btn]");
 const dropdownMenu = document.querySelector("[data-dropdown-menu]");
 const mainContainer = document.querySelector(".main");
@@ -47,3 +49,12 @@ optionButtons.forEach((btn, index) => {
     descriptionItems[index].classList.add('active');
   });
 });
+
+const element = document.querySelector('[data-choices]');
+const choices = new Choices(element, {
+    searchEnabled: false,
+    itemSelectText: '',
+    shouldSort: false,
+    placeholder: true,
+    placeholderValue: "Gender",
+  });
