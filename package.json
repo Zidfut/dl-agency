@@ -18,6 +18,7 @@
     "vite-plugin-sass-glob-import": "^5.0.0"
   },
   "dependencies": {
-    "choices.js": "^11.1.0"
+    "choices.js": "^11.1.0",
+    "gsap": "^3.13.0"
   }
 }

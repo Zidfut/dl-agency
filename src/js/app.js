@@ -1,56 +1,95 @@
 import Choices from "choices.js";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const menuBtn = document.querySelector("[data-menu-btn]");
 const dropdownMenu = document.querySelector("[data-dropdown-menu]");
 const mainContainer = document.querySelector(".main");
 
-menuBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  const isActive = this.classList.toggle("active");
-  this.classList.toggle("closed", !isActive);
-  dropdownMenu.classList.toggle("active", isActive);
-  mainContainer.classList.toggle("no-scroll", isActive);
+const toggleMenu = (isOpen) => {
+  menuBtn.classList.toggle("active", isOpen);
+  menuBtn.classList.toggle("closed", !isOpen);
+  dropdownMenu.classList.toggle("active", isOpen);
+  mainContainer.classList.toggle("no-scroll", isOpen);
+};
+
+menuBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const isOpen = !menuBtn.classList.contains("active");
+  toggleMenu(isOpen);
 });
 
-const sections = document.querySelectorAll(".section");
-const animationItems = document.querySelectorAll(".animation-item");
+document.querySelectorAll("[data-dropdown-link]").forEach((link) => {
+  link.addEventListener("click", () => toggleMenu(false));
+});
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        sections.forEach((s) => s.classList.remove("active"));
-        entry.target.classList.add("active");
 
-        animationItems.forEach((item) => {
-          if (!item.classList.contains("animation-active")) {
-            item.classList.add("animation-active");
-          }
-        });
-      }
-    });
+gsap.utils.toArray(".animation--fade-in").forEach((item) => {
+  gsap.from(item, {
+    opacity: 0,
+    delay: 3,
+    duration: 0.3,
+    y: -20,
+    x: 20,
+    ease: "power1.out",
+    scrollTrigger: {
+      trigger: item,
+      start: "top 95%",
+    },
+  });
+});
+
+ScrollTrigger.defaults({
+  scroller: ".main"
+});
+
+gsap.to(".decor__wrap", {
+  top: "0",
+  y: '-10%',
+  duration: 0.5,
+  ease: "back.out(1.4)",
+  scrollTrigger: {
+    trigger: ".presents",
+    start: "top 1%",
+    scrub: false,
+    toggleActions: 'play none none reverse'
   },
-  {
-    threshold: 0.6,
-  }
-);
+});
 
-sections.forEach((section) => observer.observe(section));
+gsap.to(".decor__wrap", {
+  opacity: 0,
+  scrollTrigger: {
+    trigger: ".contacts",
+    start: "top 1%", 
+    scrub: false,
+    toggleActions: 'play none none reverse',
+  },
+});
 
 const optionButtons = document.querySelectorAll(".presents__option");
-const descriptionItems = document.querySelectorAll(
-  ".presents__descriptions-item"
-);
+const descriptionItems = document.querySelectorAll(".presents__descriptions-item");
 
 optionButtons.forEach((btn, index) => {
   btn.addEventListener("click", () => {
-    optionButtons.forEach((btn) =>
-      btn.classList.remove("presents__option--active")
-    );
+    optionButtons.forEach((b) => b.classList.remove("presents__option--active"));
     descriptionItems.forEach((desc) => desc.classList.remove("active"));
 
     btn.classList.add("presents__option--active");
     descriptionItems[index].classList.add("active");
+  });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", (e) => {
+    const targetId = anchor.getAttribute("href");
+    const targetElement = document.querySelector(targetId);
+
+    if (targetElement) {
+      e.preventDefault();
+      targetElement.scrollIntoView({ behavior: "smooth" });
+      history.replaceState(null, "", window.location.pathname);
+    }
   });
 });
 

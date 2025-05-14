@@ -15,7 +15,7 @@
 
 <body>
 
-  <header class="header">
+  <header class="header"> 
     <div class="container">
       <div class="header__menu">
         <a href="#" class="header__logo">
@@ -24,10 +24,10 @@
         <nav class="header__nav">
           <ul class="header__nav-list">
             <li class="header__nav-item">
-              <a href="#" class="header__nav-link" data-text="Main"><span>Main</span></a>
+              <a href="#hero" class="header__nav-link" data-text="Main"><span>Main</span></a>
             </li>
             <li class="header__nav-item">
-              <a href="#" class="header__nav-link" data-text="About"><span>About</span></a>
+              <a class="header__nav-link" data-text="About"><span>About</span></a>
             </li>
             <li class="header__nav-item">
               <a href="#products" class="header__nav-link" data-text="Products"><span>Products</span></a>
@@ -38,17 +38,17 @@
           </ul>
         </nav>
         <div class="header__dropdown" data-dropdown-menu>
-          <a href="#" role="button" class="header__dropdown-btn menu__btn" data-menu-btn>
+          <button class="header__dropdown-btn menu__btn" data-menu-btn>
             <span class="menu__btn-line"></span>
             <span class="menu__btn-line"></span>
             <span class="menu__btn-line"></span>
-          </a>
+          </button>
           <div class="header__dropdown-menu">
             <ul class="header__dropdown__list">
-              <li class="header__dropdown__item"><a href="#" class="header__dropdown__link">Home</a></li>
-              <li class="header__dropdown__item"><a href="#" class="header__dropdown__link">About</a></li>
-              <li class="header__dropdown__item"><a href="#" class="header__dropdown__link">Products</a></li>
-              <li class="header__dropdown__item"><a href="#" class="header__dropdown__link">Contacts</a></li>
+              <li class="header__dropdown__item"><a href="#hero" class="header__dropdown__link" data-dropdown-link>Home</a></li>
+              <li class="header__dropdown__item"><a href="/second" class="header__dropdown__link" data-dropdown-link>About</a></li>
+              <li class="header__dropdown__item"><a href="#products" class="header__dropdown__link" data-dropdown-link>Products</a></li>
+              <li class="header__dropdown__item"><a href="#contacts" class="header__dropdown__link" data-dropdown-link>Contacts</a></li>
             </ul>
           </div>
         </div>
@@ -56,15 +56,17 @@
     </div>
   </header>
 
-  <!-- <div class="decor">
+  <div class="decor">
     <div class="container decor__container">
-      <img src="assets/img/snowflake.png" alt="" class="snowflake">
+      <div class="decor__wrap">
+        <img src="assets/img/snowflake.png" alt="" class="decor__snowflake">
+      </div>
     </div>
-  </div> -->
+  </div>
 
   <main class="main">
 
-    <section class="section hero">
+    <section class="section hero" id="hero">
       <div class="hero__stars">
         <svg width="1330" height="624" viewBox="0 0 1330 624" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path class="hero__star--duration-9 hero__star--delay-2"
@@ -157,12 +159,12 @@
         <div class="hero__left">
           <h1 class="h1">Main Site Title</h1>
           <p class="subtitle">Lorem ipsum descripsum</p>
-          <a href="#" class="btn">Call to action</a>
+          <a href="#contacts" class="btn">Call to action</a>
           <div class="hero__arrow"></div>
         </div>
         <div class="hero__right">
           <img src="assets/img/santa.png" alt="" class="hero__img">
-          <div class="hero__cloud animation-item">
+          <div class="hero__cloud animation--fade-in">
             <p>How how how !!! <br>
               Like it? <br>
               Scroll down for more !

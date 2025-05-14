@@ -105,12 +105,17 @@
     height: auto;
     overflow: auto;
   }
+
+  @media (max-height: 744px), (min-height: 1201px) {
+    height: auto;
+    overflow: auto;
+  }
 }
 
 .section {
   height: 100vh;
-  min-height: 775px;
-  max-height: 1000px;
+  min-height: 745px;
+  max-height: 1200px;
   scroll-snap-align: start;
   overflow: hidden;
 
@@ -119,13 +124,6 @@
     min-height: initial;
     max-height: initial;
   }
-
-  // @include media-breakpoint-down(md) {
-  //   height: auto;
-  //   min-height: 755px;
-  //   max-height: initial;
-  //   scroll-snap-type: initial;
-  // }
 }
 
 .h1, .h2, .h3, .subtitle {
@@ -175,26 +173,33 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
+
+  @include media-breakpoint-down(lg) {
+    display: none;
+  }
   
   &__container {
     position: relative;
     height: 100%;
   }
-}
 
-.snowflake {
-  width: fluid(448, 400);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  transform: translateX(-50%);
-  animation: rotation;
-  animation-duration: 120s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+  &__wrap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 
-  @include media-breakpoint-down(md) {
-    display: none;
+  &__snowflake {
+    width: fluid(448, 400);
+    transform: translateX(-50%);
+    animation: rotation;
+    animation-duration: 60s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
   }
 }
 
@@ -204,6 +209,5 @@
   left: 0;
   width: 100%;
   height: 100%;
-  // z-index: 1;
   pointer-events: none;
 }

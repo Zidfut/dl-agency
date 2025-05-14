@@ -27,10 +27,26 @@
         .h2 {
             margin-bottom: fluid(30, 25);
             text-wrap-style: balance;
+
+            @include media-breakpoint-down(lg) {
+                text-align: center;
+            }
+
+            @include media-breakpoint-down(sm) {
+                text-align: left;
+            }
         }
 
         .subtitle {
             margin-bottom: fluid(30, 35);
+
+            @include media-breakpoint-down(lg) {
+                text-align: center;
+            }
+
+            @include media-breakpoint-down(sm) {
+                text-align: left;
+            }
         }
     }
 
@@ -38,6 +54,10 @@
         display: flex;
         justify-content: flex-start;
         column-gap: fluid(35, 20);
+
+        @include media-breakpoint-down(lg) {
+            justify-content: center;
+        }
     }
 
     &__option {

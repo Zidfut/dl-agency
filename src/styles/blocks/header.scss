@@ -114,6 +114,9 @@
       row-gap: 5px;
       position: relative;
       z-index: 3;
+      background-color: transparent;
+      outline: none;
+      border: none;
 
       &-line {
         display: block;
@@ -187,6 +190,12 @@
       font-family: "risque", sans-serif;
       font-size: 32px;
       color: #fff;
+
+      @media(hover:hover) {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }
