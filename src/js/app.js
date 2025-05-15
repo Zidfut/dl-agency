@@ -74,7 +74,7 @@ ScrollTrigger.matchMedia({
   "(max-width: 991px), (max-height: 744px), (min-height: 1201px)": function () {
     gsap.to(".header", {
       top: "0",
-      background: "linear-gradient(180deg, rgb(20, 20, 41) 10%, rgba(20, 20, 41, 0) 100%)",
+      background: "linear-gradient(180deg, rgb(20, 20, 41, 0.9) 30%, rgba(20, 20, 41, 0.05) 100%)",
       duration: 0.3,
       scrollTrigger: {
         trigger: ".main",
