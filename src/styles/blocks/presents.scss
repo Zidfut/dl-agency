@@ -24,6 +24,9 @@
     }
 
     &__left {
+        position: relative;
+        z-index: 1;
+
         .h2 {
             margin-bottom: fluid(30, 25);
             text-wrap-style: balance;

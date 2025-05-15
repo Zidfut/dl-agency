@@ -47,7 +47,7 @@ ScrollTrigger.matchMedia({
     });
   },
 
-  "(min-width: 992px) and (min-height: 746px) and (max-height: 1199px)": function () {
+  "(min-width: 992px) and (min-height: 701px) and (max-height: 1199px)": function () {
     gsap.to(".decor__wrap", {
       top: "0",
       y: "-10%",
@@ -71,7 +71,7 @@ ScrollTrigger.matchMedia({
     });
   },
 
-  "(max-width: 991px), (max-height: 744px), (min-height: 1201px)": function () {
+  "(max-width: 991px), (max-height: 699x), (min-height: 1201px)": function () {
     gsap.to(".header", {
       top: "0",
       background: "linear-gradient(180deg, rgb(20, 20, 41, 0.9) 30%, rgba(20, 20, 41, 0.05) 100%)",
