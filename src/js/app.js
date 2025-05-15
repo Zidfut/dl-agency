@@ -6,6 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 const menuBtn = document.querySelector("[data-menu-btn]");
 const dropdownMenu = document.querySelector("[data-dropdown-menu]");
 const mainContainer = document.querySelector(".main");
+const body = document.querySelector("body");
 
 const toggleMenu = (isOpen) => {
   menuBtn.classList.toggle("active", isOpen);
@@ -59,7 +60,6 @@ ScrollTrigger.matchMedia({
         toggleActions: "play none none reverse",
       },
     });
-
     gsap.to(".decor__wrap", {
       opacity: 0,
       scrollTrigger: {
@@ -68,6 +68,20 @@ ScrollTrigger.matchMedia({
         scrub: false,
         toggleActions: "play none none reverse",
       },
+    });
+  },
+
+  "(max-width: 991px), (max-height: 744px), (min-height: 1201px)": function () {
+    gsap.to(".header", {
+      top: "0",
+      background: "linear-gradient(180deg, rgb(20, 20, 41) 10%, rgba(20, 20, 41, 0) 100%)",
+      duration: 0.3,
+      scrollTrigger: {
+        trigger: ".main",
+        start: "top",
+        toggleActions: "play none none reverse",
+        scroller: "body"
+      }
     });
   }
 });
